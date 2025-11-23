@@ -1,0 +1,179 @@
+# Git
+.git
+.gitignore
+.gitattributes
+
+# Documentation
+README.md
+CHANGELOG.md
+LICENSE
+*.md
+
+# Terraform
+terraform/
+*.tf
+*.tfvars
+*.tfstate
+*.tfstate.*
+.terraform/
+.terraform.lock.hcl
+
+# CI/CD
+.github/
+.gitlab-ci.yml
+.travis.yml
+circle.yml
+.drone.yml
+Jenkinsfile
+azure-pipelines.yml
+
+# IDE and Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.project
+.classpath
+.settings/
+.vscode/
+
+# OS files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.npm
+.eslintcache
+.node_repl_history
+coverage/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+ENV/
+.venv/
+*.egg-info/
+dist/
+build/
+*.egg
+
+# Test files
+test/
+tests/
+**/*_test.go
+**/*_test.js
+**/*_test.py
+*.test.js
+*.spec.js
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.nox/
+
+# Logs
+*.log
+logs/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+*.temp
+*.bak
+*.backup
+
+# Build artifacts (keep only final artifacts)
+*.tar.gz
+*.zip
+*.rar
+target/
+bin/
+obj/
+
+# Secrets and credentials
+.env
+.env.local
+.env.*.local
+*.pem
+*.key
+*.crt
+*.cer
+*.p12
+*.pfx
+secrets.yml
+credentials.json
+config.json
+.aws/
+.ssh/
+
+# Docker
+docker-compose.override.yml
+docker-compose.*.yml
+!docker-compose.yml
+Dockerfile.dev
+Dockerfile.test
+.dockerignore
+
+# Kubernetes
+k8s/
+kubernetes/
+*.yaml
+*.yml
+!docker-compose.yml
+
+# Development tools
+.editorconfig
+.prettierrc
+.prettierignore
+.eslintrc*
+.babelrc
+tsconfig.json
+jest.config.js
+.nvmrc
+.ruby-version
+.python-version
+
+# Documentation and diagrams
+docs/
+doc/
+*.drawio
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.svg
+!logo.png
+
+# Scripts (build scripts should be in the image)
+scripts/
+*.sh
+!entrypoint.sh
+!docker-entrypoint.sh
+
+# Package manager lock files (consider including them for reproducibility)
+# Uncomment based on your needs:
+# package-lock.json
+# yarn.lock
+# Gemfile.lock
+# Pipfile.lock
+# go.sum

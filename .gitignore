@@ -1,0 +1,123 @@
+# Terraform
+**/.terraform/*
+**/.terraform.lock.hcl.backup
+*.tfstate
+*.tfstate.*
+*.tfstate.backup
+crash.log
+crash.*.log
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+.terraformrc
+terraform.rc
+
+# Terraform variables (contains sensitive data)
+# Uncomment if you want to ignore all tfvars files
+# *.tfvars
+# *.tfvars.json
+
+# Backup files
+*.tfvars.backup
+*.tfvars.dev
+*.tfvars.bak
+*_backup
+
+# Sensitive files
+*.pem
+*.key
+*.crt
+*.cer
+*.p12
+*.pfx
+secrets.yml
+credentials.json
+.env
+.env.local
+.env.*.local
+
+# IDE and Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# OS files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Node.js (if using in the project)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+yarn.lock
+
+# Python (if using in the project)
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+ENV/
+*.egg-info/
+dist/
+build/
+
+# Logs
+*.log
+logs/
+*.log.*
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+*.temp
+
+# Terraform plan output
+*.tfplan
+plan.out
+tfplan
+
+# Terraform module cache
+**/.terraform/modules/
+
+# Local terraform config
+.terraform.tfvars
+
+# SSH keys
+id_rsa
+id_rsa.pub
+*.ppk
+
+# AWS credentials
+.aws/
+*credentials*
+!terraform/modules/
+
+# Docker
+.dockerignore.backup
+
+# Archives
+*.tar
+*.tar.gz
+*.zip
+*.rar
+
+# Test files
+test-results/
+coverage/
+.pytest_cache/
