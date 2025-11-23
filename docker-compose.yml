@@ -1,0 +1,65 @@
+services:
+  # ===========================================
+  # Node.js Application
+  # ===========================================
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: ${BUILD_TARGET:-development}
+    container_name: devops-app
+    environment:
+      - NODE_ENV=${NODE_ENV:-development}
+      - STATSD_HOST=statsd
+      - STATSD_PORT=8125
+    depends_on:
+      - statsd
+    restart: unless-stopped
+    networks:
+      - devops-network
+    # Mount code for development (override in docker-compose.override.yml)
+    # volumes:
+    #   - .:/app
+    #   - /app/node_modules
+
+  # ===========================================
+  # StatsD - Metrics Aggregation
+  # ===========================================
+  statsd:
+    image: graphiteapp/graphite-statsd:latest
+    container_name: devops-statsd
+    ports:
+      - "8080:80"        # Graphite web UI
+      - "8125:8125/udp"  # StatsD UDP
+      - "8126:8126"      # StatsD admin
+      - "2003:2003"      # Carbon line receiver
+      - "2004:2004"      # Carbon pickle receiver
+    environment:
+      - STATSD_INTERFACE=udp
+    volumes:
+      - statsd-data:/opt/graphite/storage
+      - statsd-config:/opt/statsd/config
+    restart: unless-stopped
+    networks:
+      - devops-network
+    healthcheck:
+      test: ["CMD", "nc", "-z", "localhost", "8125"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  # ===========================================
+  # Graphite - Metrics Storage & Visualization
+  # Note: Included in graphiteapp/graphite-statsd image
+  # ===========================================
+
+networks:
+  devops-network:
+    driver: bridge
+
+volumes:
+  statsd-data:
+    driver: local
+  statsd-config:
+    driver: local

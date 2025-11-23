@@ -8,8 +8,9 @@ README.md
 CHANGELOG.md
 LICENSE
 *.md
+!docs/*.md
 
-# Terraform
+# Terraform (not needed in Node.js Docker image)
 terraform/
 *.tf
 *.tfvars

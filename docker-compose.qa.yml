@@ -1,0 +1,12 @@
+services:
+  app:
+    build:
+      target: test
+    environment:
+      - NODE_ENV=qa
+    command: npm test
+
+  statsd:
+    # Minimal configuration for testing
+    ports:
+      - "8125:8125/udp"
