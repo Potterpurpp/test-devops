@@ -12,7 +12,7 @@ terraform/
 │       ├── variables.tf       # Input variables
 │       └── outputs.tf         # Output values
 │
-└── practice-project/          # Practice project
+└── devops-test/          # Practice project
     └── dev/                   # Development environment
         └── terraform-ec2/     # EC2 deployment
             ├── terraform.tf   # Terraform & backend config
@@ -50,7 +50,7 @@ aws configure
 
 ### 3. แก้ไขไฟล์ tfvars
 
-แก้ไขไฟล์ `practice-project/dev/terraform-ec2/practice-dev-ec2.tfvars`:
+แก้ไขไฟล์ `devops-test/dev/terraform-ec2/practice-dev-ec2.tfvars`:
 
 ```hcl
 # เปลี่ยน VPC และ Subnet ID
@@ -62,7 +62,7 @@ subnet_id = "subnet-xxxxx"      # Subnet ID ของคุณ
 
 ```bash
 # เข้าไปยัง directory
-cd practice-project/dev/terraform-ec2
+cd devops-test/dev/terraform-ec2
 
 # Initialize Terraform
 terraform init
