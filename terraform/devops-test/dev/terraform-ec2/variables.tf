@@ -66,12 +66,14 @@ variable "ec2_source_dest_check" {
 variable "vpc_id" {
   description = "ID of the VPC"
   type        = string
+  default     = null
 }
 
 # Subnet ID Variable
 variable "subnet_id" {
   description = "Subnet ID where the instance will be launched"
   type        = string
+  default     = null
 }
 
 # EC2 Create Security Group Variable
@@ -195,6 +197,48 @@ variable "ec2_user_data" {
   description = "User data script to run on EC2 instance startup"
   type        = string
   default     = null
+}
+
+variable "ec2_git_repo" {
+  description = "Git repository URL to pull application code from"
+  type        = string
+  default     = "https://github.com/your-org/your-repo.git"
+}
+
+variable "ec2_image_name" {
+  description = "Image name (repository) to use for builds and tags"
+  type        = string
+  default     = "test-devops-app"
+}
+
+variable "ec2_image_tag" {
+  description = "Image tag to use (e.g. git commit, version)"
+  type        = string
+  default     = "latest"
+}
+
+variable "ec2_ecr_registry_dev" {
+  description = "ECR registry URL for dev (e.g. 123456789012.dkr.ecr.region.amazonaws.com)"
+  type        = string
+  default     = ""
+}
+
+variable "ec2_ecr_registry_uat" {
+  description = "ECR registry URL for uat"
+  type        = string
+  default     = ""
+}
+
+variable "ec2_ecr_registry_prod" {
+  description = "ECR registry URL for prod"
+  type        = string
+  default     = ""
+}
+
+variable "ec2_ecr_repository_urls" {
+  description = "Map of repository name => repository_url (from ECR module outputs). Used when running combined deployments."
+  type        = map(string)
+  default     = {}
 }
 
 # EC2 User Data Base64 Variable
