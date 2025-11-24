@@ -21,7 +21,7 @@ ec2_ingress_rules = [
     from_port        = 22
     to_port          = 22
     protocol         = "tcp"
-    cidr_blocks      = ["0.0.0.0/0"]  # Update with your IP range
+    cidr_blocks      = ["10.11.0.0/16"]  # Update with your IP range
     ipv6_cidr_blocks = []
     prefix_list_ids  = []
     security_groups  = []
@@ -32,7 +32,7 @@ ec2_ingress_rules = [
     from_port        = 80
     to_port          = 80
     protocol         = "tcp"
-    cidr_blocks      = ["0.0.0.0/0"]
+    cidr_blocks      = ["10.11.0.0/16"]
     ipv6_cidr_blocks = []
     prefix_list_ids  = []
     security_groups  = []
@@ -43,7 +43,7 @@ ec2_ingress_rules = [
     from_port        = 443
     to_port          = 443
     protocol         = "tcp"
-    cidr_blocks      = ["0.0.0.0/0"]
+    cidr_blocks      = ["10.11.0.0/16"]
     ipv6_cidr_blocks = []
     prefix_list_ids  = []
     security_groups  = []
@@ -54,7 +54,7 @@ ec2_ingress_rules = [
     from_port        = 8125
     to_port          = 8125
     protocol         = "udp"
-    cidr_blocks      = ["10.0.0.0/8"]  # More restrictive - internal network only
+    cidr_blocks      = ["10.11.0.0/16"]  # More restrictive - internal network only
     ipv6_cidr_blocks = []
     prefix_list_ids  = []
     security_groups  = []
@@ -64,7 +64,6 @@ ec2_ingress_rules = [
 
 # Key Pair Configuration
 ec2_create_key_pair = false
-ec2_existing_key_pair_name = "your-key-pair-name"  # Replace with your existing key pair
 
 # IAM Configuration
 ec2_create_iam_role = true
