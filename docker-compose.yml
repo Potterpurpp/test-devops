@@ -1,0 +1,30 @@
+version: '3.8'
+services:
+  app:
+    build: .
+    container_name: test-devops-app
+    environment:
+      - NODE_ENV=development
+      - METRICS_HOST=statsd
+      - METRICS_PORT=8125
+    depends_on:
+      - statsd
+    restart: unless-stopped
+
+  # Graphite + StatsD combined image (includes statsd listener)
+  statsd:
+    image: graphiteapp/graphite-statsd:latest
+    container_name: graphite-statsd
+    ports:
+      - "80:80"        # Graphite web UI
+      - "2003:2003"    # carbon-cache plaintext
+      - "8125:8125/udp" # statsd UDP port
+    volumes:
+      - ./graphite_data:/opt/graphite/storage
+    environment:
+      - STATSD_PORT=8125
+      - STATSD_GRAPHITE_HOST=127.0.0.1
+
+networks:
+  default:
+    driver: bridge

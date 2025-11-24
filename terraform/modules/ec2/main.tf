@@ -78,6 +78,92 @@ resource "aws_iam_role_policy_attachment" "ec2_additional_policies" {
   policy_arn = var.iam_policy_arns[count.index]
 }
 
+# Optional managed policy for ECR access
+# Inline least-privilege policy for ECR repositories (when ARNs provided)
+resource "aws_iam_policy" "ec2_ecr_repos" {
+  count = var.create_iam_role && length(keys(var.ecr_repository_arns)) > 0 ? 1 : 0
+
+  name = "${var.instance_name}-ecr-repos-policy"
+
+  policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Effect = "Allow"
+        Action = ["ecr:GetAuthorizationToken"]
+        Resource = "*"
+      },
+      {
+        Effect = "Allow"
+        Action = [
+          "ecr:BatchCheckLayerAvailability",
+          "ecr:GetDownloadUrlForLayer",
+          "ecr:BatchGetImage"
+        ]
+        Resource = values(var.ecr_repository_arns)
+      },
+      {
+        Effect = "Allow"
+        Action = [
+          "ecr:PutImage",
+          "ecr:InitiateLayerUpload",
+          "ecr:UploadLayerPart",
+          "ecr:CompleteLayerUpload"
+        ]
+        Resource = values(var.ecr_repository_arns)
+      }
+    ]
+  })
+}
+
+resource "aws_iam_role_policy_attachment" "ec2_ecr_repos_attach" {
+  count = var.create_iam_role && length(keys(var.ecr_repository_arns)) > 0 ? 1 : 0
+  role  = aws_iam_role.ec2[0].name
+  policy_arn = aws_iam_policy.ec2_ecr_repos[0].arn
+}
+# Inline least-privilege policy for ECR repositories (when ARNs provided)
+resource "aws_iam_policy" "ec2_ecr_repos" {
+  count = var.create_iam_role && length(keys(var.ecr_repository_arns)) > 0 ? 1 : 0
+
+  name = "${var.instance_name}-ecr-repos-policy"
+
+  policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Effect = "Allow"
+        Action = ["ecr:GetAuthorizationToken"]
+        Resource = "*"
+      },
+      {
+        Effect = "Allow"
+        Action = [
+          "ecr:BatchCheckLayerAvailability",
+          "ecr:GetDownloadUrlForLayer",
+          "ecr:BatchGetImage"
+        ]
+        Resource = values(var.ecr_repository_arns)
+      },
+      {
+        Effect = "Allow"
+        Action = [
+          "ecr:PutImage",
+          "ecr:InitiateLayerUpload",
+          "ecr:UploadLayerPart",
+          "ecr:CompleteLayerUpload"
+        ]
+        Resource = values(var.ecr_repository_arns)
+      }
+    ]
+  })
+}
+
+resource "aws_iam_role_policy_attachment" "ec2_ecr_repos_attach" {
+  count = var.create_iam_role && length(keys(var.ecr_repository_arns)) > 0 ? 1 : 0
+  role  = aws_iam_role.ec2[0].name
+  policy_arn = aws_iam_policy.ec2_ecr_repos[0].arn
+}
+
 # Security Group for EC2 Instance
 resource "aws_security_group" "ec2" {
   count       = var.create_security_group ? 1 : 0

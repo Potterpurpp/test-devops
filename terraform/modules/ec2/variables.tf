@@ -178,6 +178,18 @@ variable "iam_policy_arns" {
   default     = []
 }
 
+variable "attach_ecr_managed_policy" {
+  description = "Attach the AWS managed policy for ECR access (AmazonEC2ContainerRegistryPowerUser)"
+  type        = bool
+  default     = false
+}
+
+variable "ecr_repository_arns" {
+  description = "Map of ECR repository ARNs to grant the instance role access to (name => arn)"
+  type        = map(string)
+  default     = {}
+}
+
 # User Data Variable
 variable "user_data" {
   description = "User data script to run on instance startup"

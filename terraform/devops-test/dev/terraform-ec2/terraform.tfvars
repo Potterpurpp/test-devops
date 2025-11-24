@@ -3,9 +3,8 @@ project_name = "devops-test"
 environment  = "dev"
 region       = "ap-southeast-1"
 
-# VPC and Networking (Update these values with your actual VPC and Subnet IDs)
-vpc_id    = "vpc-xxxxxxxxxxxxxxxxx"  # Replace with your VPC ID
-subnet_id = "subnet-xxxxxxxxxxxxxxxxx"  # Replace with your Subnet ID
+# VPC and Networking: leave `vpc_id` and `subnet_id` unset to auto-discover the VPC/subnet
+# vpc_id and subnet_id are optional and will be discovered by `terraform` when omitted
 
 # EC2 Instance Configuration
 ec2_instance_name = "devops-test-dev-ec2"
@@ -71,3 +70,8 @@ tags = {
   ManagedBy   = "Terraform"
   CostCenter  = "Engineering"
 }
+
+# Application / ECR settings (the deployment will use ECR module outputs when available)
+ec2_git_repo = "https://github.com/Potterpurpp/test-devops.git"
+ec2_image_name = "test-devops-app"
+ec2_image_tag = "dev-latest"
