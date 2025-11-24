@@ -66,7 +66,8 @@ fi
 
 # Replace image in docker-compose.yml to use the UAT repo + tag
 if [ -f docker-compose.yml ]; then
-  sed -i "s|image: .*|image: ${ECR_REGISTRY_UAT}:${IMAGE_TAG}|g" docker-compose.yml || true
+   sed -i "/^  app:/,/^  [^ ]/ s|^\\s*image:.*|    image: ${ECR_REGISTRY_UAT}:${IMAGE_TAG}|" docker-compose.yml || true
+   sed -i "/^  app:/,/^  [^ ]/ s|^\\s*-\\s*NODE_ENV=.*|      - NODE_ENV=uat|" docker-compose.yml || true
   docker-compose up -d --remove-orphans
 fi
 

@@ -1,7 +1,7 @@
 version: '3.8'
 services:
   app:
-    build: .
+    image: test-devops:local
     container_name: test-devops-app
     environment:
       - NODE_ENV=development

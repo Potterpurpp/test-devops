@@ -73,5 +73,6 @@ tags = {
 
 # Application / ECR settings (the deployment will use ECR module outputs when available)
 ec2_git_repo = "https://github.com/Potterpurpp/test-devops.git"
-ec2_image_name = "test-devops-app"
-ec2_image_tag = "dev-latest"
+ec2_image_name = "test-devops-app-dev"
+ec2_image_tag = "latest"
+ec2_ecr_registry_dev = "repo"

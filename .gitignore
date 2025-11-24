@@ -121,3 +121,6 @@ id_rsa.pub
 test-results/
 coverage/
 .pytest_cache/
+
+# Graphite data
+graphite_data/*

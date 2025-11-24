@@ -5,9 +5,7 @@ region       = "ap-southeast-1"
 
 # ECR Repository Names
 repository_names = [
-  "nodejs-app",
-  "statsd",
-  "graphite"
+  "test-devops-app-dev"
 ]
 
 # Image Configuration

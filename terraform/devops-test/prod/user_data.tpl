@@ -51,8 +51,8 @@ fi
 
 if [ -f docker-compose.yml ]; then
   if [ -n "$REGISTRY_TO_USE" ] && [ "$REGISTRY_TO_USE" != "null" ]; then
-    sed -i "s|image: .*|image: ${REGISTRY_TO_USE}:${IMAGE_TAG}|g" docker-compose.yml || true
-  fi
+    sed -i "/^  app:/,/^  [^ ]/ s|^\\s*image:.*|    image: ${REGISTRY_TO_USE}:${IMAGE_TAG}|" docker-compose.yml || true
+    sed -i "/^  app:/,/^  [^ ]/ s|^\\s*-\\s*NODE_ENV=.*|      - NODE_ENV=production|" docker-compose.yml || true
   docker-compose up -d --remove-orphans
 fi
 
