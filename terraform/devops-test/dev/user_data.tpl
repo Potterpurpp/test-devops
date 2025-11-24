@@ -57,7 +57,7 @@ fi
 
 # Replace image in docker-compose.yml if present (use repository URL + tag)
 if [ -f docker-compose.yml ]; then
-  sed -i "s|image: .*|image: ${REGISTRY_TO_USE}:${IMAGE_TAG}|g" docker-compose.yml || true
+  sed -i "s|image: .*|image: $${REGISTRY_TO_USE}:$${IMAGE_TAG}|g" docker-compose.yml || true
   docker-compose up -d --remove-orphans
 fi
 

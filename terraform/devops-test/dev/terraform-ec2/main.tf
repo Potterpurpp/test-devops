@@ -36,19 +36,22 @@ data "aws_vpc" "by_name" {
   }
 }
 
-data "aws_subnet_ids" "vpc_subnets" {
-  count  = var.subnet_id == null && var.vpc_id == null ? 1 : 0
-  vpc_id = data.aws_vpc.by_name[0].id
+data "aws_subnets" "vpc_subnets" {
+  count = var.subnet_id == null && var.vpc_id == null ? 1 : 0
+  filter {
+    name   = "vpc-id"
+    values = [data.aws_vpc.by_name[0].id]
+  }
 }
 
 locals {
   effective_vpc_id    = var.vpc_id != null ? var.vpc_id : (length(data.aws_vpc.by_name) > 0 ? data.aws_vpc.by_name[0].id : null)
-  effective_subnet_id = var.subnet_id != null ? var.subnet_id : (length(data.aws_subnet_ids.vpc_subnets) > 0 ? data.aws_subnet_ids.vpc_subnets[0].ids[0] : null)
+  effective_subnet_id = var.subnet_id != null ? var.subnet_id : (length(data.aws_subnets.vpc_subnets) > 0 ? data.aws_subnets.vpc_subnets[0].ids[0] : null)
 }
 
 # EC2 Module
 module "ec2" {
-  source = "../../modules/ec2"
+  source = "../../../modules/ec2"
 
   # Project Configuration
   project_name = var.project_name

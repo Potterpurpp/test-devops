@@ -69,6 +69,13 @@ variable "vpc_id" {
   default     = null
 }
 
+# VPC Name Variable
+variable "vpc_name" {
+  description = "Name of the VPC (used to look up VPC by Name tag if vpc_id is not provided)"
+  type        = string
+  default     = null
+}
+
 # Subnet ID Variable
 variable "subnet_id" {
   description = "Subnet ID where the instance will be launched"
