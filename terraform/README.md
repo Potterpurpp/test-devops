@@ -226,6 +226,7 @@ terraform apply
 terraform destroy
 
 # 3. EC2 Component (Deploy last - will auto-discover VPC)
+#    Update ECR&TAG_IMAGE file terraform.tfvars 
 cd terraform/devops-test/dev/terraform-ec2
 terraform init
 terraform plan
@@ -251,6 +252,7 @@ terraform plan -var-file=../../uat/devops-test-uat-ecr.tfvars
 terraform apply -var-file=../../uat/devops-test-uat-ecr.tfvars
 
 # 3. EC2 Component
+#    Update ECR&TAG_IMAGE file devops-test-uat-ec2.tfvars
 cd terraform/devops-test/dev/terraform-ec2
 terraform init
 terraform plan -var-file=../../uat/devops-test-uat-ec2.tfvars
@@ -275,6 +277,7 @@ terraform plan -var-file=../../prod/devops-test-prod-ecr.tfvars
 terraform apply -var-file=../../prod/devops-test-prod-ecr.tfvars
 
 # 3. EC2 Component
+#    Update ECR&TAG_IMAGE file devops-test-prod-ec2.tfvars
 cd terraform/devops-test/dev/terraform-ec2
 terraform init
 terraform plan -var-file=../../prod/devops-test-prod-ec2.tfvars

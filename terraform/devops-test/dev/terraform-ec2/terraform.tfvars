@@ -75,4 +75,4 @@ tags = {
 ec2_git_repo = "https://github.com/Potterpurpp/test-devops.git"
 ec2_image_name = "test-devops-app-dev"
 ec2_image_tag = "latest"
-ec2_ecr_registry_dev = "repo"
+ec2_ecr_registry_dev = "123456789012.dkr.ecr.ap-southeast-1.amazonaws.com/test-devops-app-dev"
